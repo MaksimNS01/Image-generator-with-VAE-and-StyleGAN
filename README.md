@@ -15,6 +15,8 @@ The following processing pipeline was implemented:
 * An experimental comparison of the methods was conducted based on quality metrics, training time, and computational requirements.
 
 The paper demonstrates the practical application of generative models in the entertainment industry, marketing, and scientific research, and also shows the trade-offs between image reconstruction accuracy (VAE) and generation realism (StyleGAN).
+
+Генератор изображений с VAE и StyleGAN
 ==========================================================================================================================================================================================================================================
 
 В данной работе представлено сравнительное исследование двух современных подходов к генерации изображений: вариационного автокодировщика (VAE) и упрощенной архитектуры StyleGAN. Реализация выполнена на языке Python с использованием библиотеки TensorFlow.
