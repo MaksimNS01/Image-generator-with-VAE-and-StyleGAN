@@ -1,42 +1,83 @@
-# Генератор изображений с VAE и StyleGAN
+# Сравнительный анализ генеративных моделей VAE и StyleGAN
+Исследовательский проект по реализации и сравнительной оценке вариационных автокодировщиков (VAE) и архитектуры StyleGAN для генерации изображений лиц знаменитостей.
 
-В данной работе представлено сравнительное исследование двух современных подходов к генерации изображений: вариационного автокодировщика (VAE) и упрощенной архитектуры StyleGAN. Реализация выполнена на языке Python с использованием библиотеки TensorFlow.
+## Функциональность
+* Реализация VAE с KL-регуляризацией  
+* Упрощенная реализация StyleGAN с adversarial обучением  
+* Предобработка датасета CelebA (202599 изображений)  
+* Визуализация процесса обучения и результатов  
+* Сравнительный анализ качества генерации  
+* Анализ латентного пространства и интерполяции  
+* Расчет метрик качества для обеих моделей  
 
-Цель работы заключается в анализе качества генерации изображений лиц знаменитостей. В работе рассматриваются ключевые аспекты архитектур обоих методов.
+## Технологии
+Python 3.8+  
+TensorFlow 2.x - основной фреймворк глубокого обучения  
+Keras - высокоуровневый API для нейронных сетей  
+NumPy, Pandas - обработка данных  
+Matplotlib, Seaborn, Plotly - визуализация  
+Scikit-learn - метрики и алгоритмы  
 
-Реализован следующий пайплайн обработки:
+## Архитектура моделей
+VAE (Вариационный автокодировщик)  
+Энкодер:  
+Вход: 64×64×3 изображения  
+Сверточные слои: 32→64→128 фильтров  
+Batch Normalization после каждого слоя  
+Выход: латентные векторы размерности 128  
 
-* подготовка данных;
-* обучение моделей;
-* визуализация результатов;
-* анализ латентного пространства;
-* интерполяция между изображениями;
-* сравнение качества генерации.
-* Проведено экспериментальное сравнение методов по метрикам качества, времени обучения и вычислительным требованиям.
+Декодер:  
+Вход: латентные векторы размерности 128  
+Транспонированные свертки: 128→64→32 фильтра  
+Batch Normalization  
+Выход: восстановленные изображения 64×64×3  
 
-Работа демонстрирует практическое применение генеративных моделей в индустрии развлечений, маркетинге и научных исследованиях, а также показывает компромиссы между точностью восстановления изображений (VAE) и реалистичностью генерации (StyleGAN).
+StyleGAN (Упрощенная версия)  
+Генератор:  
+Вход: случайный шум размерности 128  
+Полносвязный слой → преобразование в 8×8×256  
+Транспонированные свертки: 256→128→64→32  
+Выход: сгенерированные изображения 64×64×3  
+
+Дискриминатор:  
+Вход: изображения 64×64×3  
+Сверточные слои: 32→64→128 фильтров  
+Batch Normalization  
+Выход: вероятность реальности изображения  
+
+## Метрики качества
+Для VAE:  
+```
+MSE (Mean Squared Error) = 0.136927  
+MAE (Mean Absolute Error) = 0.281591  
+KL-Divergence = 0.048664  
+Total Loss = 0.185590  
+```
+
+Для StyleGAN:
+```
+Generator Loss = 9.638117
+Discriminator Loss = 7.965561
+Real/Fake Score Difference = 1.717332
+```
+
+## Особенности реализации
+* Обработка данных  
+* Автоматическая загрузка и распаковка датасета  
+* Нормализация изображений в диапазон [-1, 1]  
+* Балансированное разделение на train/val/test (70%/15%/15%)  
+* Пакетная обработка для эффективного использования памяти  
+
+## Обучение моделей
+* VAE: Оптимизация ELBO (Evidence Lower Bound)  
+* StyleGAN: Adversarial обучение с балансировкой генератора и дискриминатора  
+* Мониторинг переобучения через валидационную выборку  
+* Автосохранение чекпоинтов  
+* Визуализация и анализ  
+* Графики обучения и потерь  
+* Примеры реконструкции и генерации  
+* Интерполяция в латентном пространстве  
+* t-SNE визуализация латентных представлений  
 
 ## Лицензия
-MIT License
-
----
-# Image-generator-with-VAE-and-StyleGAN
-
-This paper presents a comparative study of two modern approaches to image generation: variational autoencoder (VAE) and simplified StyleGAN architecture. The implementation is written in Python using the TensorFlow library.
-
-The aim of the paper is to analyze the quality of image generation for celebrity faces. The paper examines key aspects of the architectures of both methods.
-
-The following processing pipeline was implemented:
-
-* data preparation;
-* model training;
-* visualization of results;
-* latent space analysis;
-* interpolation between images;
-* comparison of generation quality.
-* An experimental comparison of the methods was conducted based on quality metrics, training time, and computational requirements.
-
-The paper demonstrates the practical application of generative models in the entertainment industry, marketing, and scientific research, and also shows the trade-offs between image reconstruction accuracy (VAE) and generation realism (StyleGAN)
-
-## License
-MIT
+Проект предназначен для образовательных и исследовательских целей.
