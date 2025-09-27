@@ -16,7 +16,8 @@
 
 Работа демонстрирует практическое применение генеративных моделей в индустрии развлечений, маркетинге и научных исследованиях, а также показывает компромиссы между точностью восстановления изображений (VAE) и реалистичностью генерации (StyleGAN).
 
-
+## Лицензия
+MIT License
 ---
 # Image-generator-with-VAE-and-StyleGAN
 
@@ -35,3 +36,6 @@ The following processing pipeline was implemented:
 * An experimental comparison of the methods was conducted based on quality metrics, training time, and computational requirements.
 
 The paper demonstrates the practical application of generative models in the entertainment industry, marketing, and scientific research, and also shows the trade-offs between image reconstruction accuracy (VAE) and generation realism (StyleGAN)
+
+## License
+MIT
