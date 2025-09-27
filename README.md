@@ -18,6 +18,7 @@
 
 ## Лицензия
 MIT License
+
 ---
 # Image-generator-with-VAE-and-StyleGAN
 
